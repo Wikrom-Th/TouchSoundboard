@@ -14,4 +14,5 @@
 3. change `secrets.h` to your wifi credentials, server ip, etc.
 4. connect your touch sensor/switch to ESP32, and change the pins in [touchUdp.ino](Arduino/touchUdp/touchUdp.ino) accordingly.
 5. upload `touchUdp.ino` to your ESP32 (see [Upload a sketch in Arduino IDE](https://support.arduino.cc/hc/en-us/articles/4733418441116-Upload-a-sketch-in-Arduino-IDE) for more details).
-6. either do `go run server.go` or `go build` & `.\touchSoundboard.exe` to run your server. 
+6. add `wav` sample files to [samples](./samples/) folder
+7. either do `go run server.go` or `go build` & `.\touchSoundboard.exe` to run your server. 
