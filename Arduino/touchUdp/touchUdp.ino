@@ -79,7 +79,7 @@ void loop() {
 
     if((WiFi.status()== WL_CONNECTED) && play_query){
       //send play_query
-      uint8_t buf[1] = {byte(play_query)};
+      uint8_t buf[1] = {byte(round(log2(play_query)))};
       udp.beginPacket(addr, port);
       udp.write(buf, 1);
       memset(buf, 0, 1);
