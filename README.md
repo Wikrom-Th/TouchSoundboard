@@ -16,3 +16,6 @@
 5. upload `touchUdp.ino` to your ESP32 (see [Upload a sketch in Arduino IDE](https://support.arduino.cc/hc/en-us/articles/4733418441116-Upload-a-sketch-in-Arduino-IDE) for more details).
 6. add `wav` sample files to [samples](./samples/) folder
 7. either do `go run server.go` or `go build` & `.\touchSoundboard.exe` to run your server. 
+
+## Example
+Demo [here](https://youtube.com/watch?v=bk5lEITgi10)
