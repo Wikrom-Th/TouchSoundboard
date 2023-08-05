@@ -7,6 +7,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/faiface/beep"
 	"github.com/faiface/beep/speaker"
 	"github.com/faiface/beep/wav"
 )
@@ -17,6 +18,8 @@ func play_sound(sample string) {
 		log.Fatal(err)
 	}
 
+	fmt.Println(f)
+
 	streamer, format, err := wav.Decode(f)
 	if err != nil {
 		log.Fatal(err)
@@ -24,10 +27,17 @@ func play_sound(sample string) {
 	defer streamer.Close()
 
 	speaker.Init(format.SampleRate, format.SampleRate.N(time.Second/10))
-	speaker.Play(streamer)
+
+	done := make(chan bool)
+	speaker.Play(beep.Seq(streamer, beep.Callback(func() {
+		done <- true
+	})))
+
+	<-done
 }
 
 func main() {
+	samples := [...]string{"kick1.wav", "snare1.wav", "clap1.wav"}
 	udpServer, err := net.ListenPacket("udp", ":12345")
 	if err != nil {
 		log.Fatal(err)
@@ -41,6 +51,6 @@ func main() {
 			continue
 		}
 		fmt.Println(buf[0])
-
+		go play_sound(samples[buf[0]])
 	}
 }
